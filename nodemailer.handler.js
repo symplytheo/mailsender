@@ -9,7 +9,7 @@ const transport = nodemailer.createTransport({
   auth: { user, pass },
 });
 
-const sendEmailMessage = async ({ to, subject, message, message_html }) => {
+const sendEmailMessage = async ({ to, subject, message, message_html, cc }) => {
   try {
     const result = await transport.sendMail({
       from: { name: 'MailSender', address: user },
@@ -17,6 +17,7 @@ const sendEmailMessage = async ({ to, subject, message, message_html }) => {
       subject,
       text: message,
       html: message_html,
+      cc
     });
     return result;
   } catch (err) {
