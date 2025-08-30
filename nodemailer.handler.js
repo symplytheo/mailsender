@@ -9,10 +9,10 @@ const transport = nodemailer.createTransport({
   auth: { user, pass },
 });
 
-const sendEmailMessage = async ({ to, subject, message, message_html, cc }) => {
+const sendEmailMessage = async ({ to, subject, message, message_html, cc, name, from }) => {
   try {
     const result = await transport.sendMail({
-      from: { name: 'MailSender', address: user },
+      from: { name: name || 'MailSender', address: from || user },
       to,
       subject,
       text: message,
